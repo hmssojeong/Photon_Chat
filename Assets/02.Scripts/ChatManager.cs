@@ -10,7 +10,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener   // 채팅 이벤
     private ChatClient _chatClient;
     private const string CHANNEL_SKKU = "skku2";
     private const string CHANNEL_NOTICE = "notice";
-    private const string NickName = "용진";
+    private const string NickName = "SJ";
+    //private const string UserID = "SJ";
     private List<ChatMessage> _messages;
     
     // 새로운 챗 메시지가 수신되면 실행되는 이벤트
@@ -92,7 +93,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener   // 채팅 이벤
         Debug.Log($"[Photon Chat]채널 {channel}에 {user} 입장");
         if (channel == CHANNEL_SKKU)
         {
-            OnNewMessage?.Invoke(ChatMessage.CreateSystem($"{user} 님이 입장했습니다"));
+            OnNewMessage?.Invoke(ChatMessage.CreateSystem($"{user} 님이 {channel}에 입장했습니다"));
             BroadcastUserCount();
         }
     }
@@ -102,7 +103,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener   // 채팅 이벤
         Debug.Log($"[Photon Chat]채널 {channel}에 {user} 퇴장");
         if (channel == CHANNEL_SKKU)
         {
-            OnNewMessage?.Invoke(ChatMessage.CreateSystem($"{user} 님이 퇴장했습니다"));
+            OnNewMessage?.Invoke(ChatMessage.CreateSystem($"{user} 님이 {channel}에서 퇴장했습니다"));
             BroadcastUserCount();
         }
     }
